@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class Grid : SingletonMonoBehaviour<Grid>
 {
     [SerializeField] private int gridSize;
     [SerializeField] private float noiseScale;
@@ -14,6 +14,16 @@ public class Grid : MonoBehaviour
     [SerializeField] private GameObject terrainPrefab;
 
     [SerializeField] private Cell[,] grid;
+
+    [Header("TEST")]
+    public Vector3Int? startGridPosition;
+    public Vector3Int? endGridPosition;
+    public Stack<Vector3> pathStack = new();
+    public Transform pathParent;
+    public GameObject testPrefab;
+
+    //public Vector3Int noValue = new Vector3Int(-9999, -9999, -9999);
+
 
     private void Start()
     {
@@ -39,27 +49,106 @@ public class Grid : MonoBehaviour
 
         grid = new Cell[gridSize, gridSize];
 
-        for(int i = 0; i < gridSize; i++)
+        for(int x = 0; x < gridSize; x++)
         {
-            for(int j = 0; j < gridSize; j++)
+            for(int y = 0; y < gridSize; y++)
             {
-                Cell cell = new Cell();
+                Cell cell = new Cell(new Vector2Int(x, y));
                 cell.AssignCellType(CellTypes.Terrain);
-                if (noiseMap[i,j] < treeLevel)
+                if (noiseMap[x,y] < treeLevel)
                 {
                     cell.AssignCellType(CellTypes.Tree);
                 }
 
-                if (fireNoiseMap[i, j] > FireLevel)
+                if (fireNoiseMap[x, y] > FireLevel)
                 {
                     cell.AssignCellType(CellTypes.Fire);
                 }
                 //cell.isTree = noiseMap[i, j] < treeLevel;
-                grid[i, j] = cell;
+                grid[x, y] = cell;
             }
         }
 
         DrawCell(grid);
+
+
+        //TEST
+        startGridPosition = null;
+        endGridPosition = null;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            if(pathStack != null)
+                pathStack = null;
+            startGridPosition = null;
+            endGridPosition = null;
+
+            foreach(Transform t in pathParent)
+            {
+                Destroy(t.gameObject);
+            }
+
+            for (int i = 0; i < gridSize; i++)
+            {
+                for(int j = 0; j < gridSize; j++)
+                {
+                    grid[i, j].ResetPathfindingData();
+                }
+            }
+
+        }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            DisplayPath();
+        }
+    }
+
+    private void DisplayPath()
+    {
+        if (startGridPosition != null && endGridPosition != null)
+        {
+            //pathStack = new();
+            pathStack = AStar.BuildPath(this, (Vector3Int)startGridPosition, (Vector3Int)endGridPosition);
+        }
+
+        else
+            pathStack = null;
+
+        if (pathStack == null)
+        {
+            Debug.Log("Womp womp");
+        }
+        else
+        {
+            foreach(Vector3 worldPosition in pathStack)
+            {
+                var newG = Instantiate(testPrefab, worldPosition, Quaternion.identity);
+                newG.transform.parent = pathParent;
+            }
+        }
+
+        //foreach(Vector3 worldPosition in pathStack)
+        //{
+        //    //Gizmos.color = Color.green;
+        //}
+    }
+
+    public Cell GetGridCell(int x, int y)
+    {
+        //Debug.Log($"{x} , {y}");
+        if(x < gridSize && y < gridSize && x > -1 && y > -1)
+        {
+            return grid[x, y];
+        }
+        else
+        {
+            //Debug.Log("Requested grid is out of bounds");
+            return null;
+        }
     }
 
     private void DrawCell(Cell[,] grid)
@@ -76,18 +165,24 @@ public class Grid : MonoBehaviour
                     GameObject tree = Instantiate(prefab, transform.position, Quaternion.identity);
                     tree.transform.parent = transform;  
                     tree.transform.position = new Vector2(i, j);
+
+                    tree.GetComponent<CellBehaviour>().cell = c;
                 }
                 else if(c.cellType == CellTypes.Fire)
                 {
                     GameObject fire = Instantiate(firePrefab, transform.position, Quaternion.identity);
                     fire.transform.parent = transform;
                     fire.transform.position = new Vector2(i, j);
+
+                    fire.GetComponent<CellBehaviour>().cell = c;
                 }
                 else if(c.cellType == CellTypes.Terrain)
                 {
                     GameObject terrain = Instantiate(terrainPrefab, transform.position, Quaternion.identity);
                     terrain.transform.parent = transform;
                     terrain.transform.position = new Vector2(i, j);
+
+                    terrain.GetComponent<CellBehaviour>().cell = c;
                 }
             }
         }
@@ -102,7 +197,7 @@ public class Grid : MonoBehaviour
     //        {
     //            Cell cell = grid[i, j];
 
-    //            if(cell.isTree)
+    //            if (cell.isTree)
     //            {
     //                Gizmos.color = Color.green;
     //            }
@@ -111,6 +206,15 @@ public class Grid : MonoBehaviour
     //                Gizmos.color = Color.black;
     //            }
     //            Vector2 pos = new Vector2(i, j);
+    //            Gizmos.DrawCube(pos, Vector3.one);
+    //        }
+    //    }
+
+    //    if (pathStack != null)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        foreach (Vector3 pos in pathStack)
+    //        {
     //            Gizmos.DrawCube(pos, Vector3.one);
     //        }
     //    }

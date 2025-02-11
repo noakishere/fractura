@@ -7,3 +7,10 @@ public enum CraftingObjectType
     Material,
     Miscellaneous
 }
+
+public enum CellTypes
+{
+    Tree,
+    Fire,
+    Terrain
+}
