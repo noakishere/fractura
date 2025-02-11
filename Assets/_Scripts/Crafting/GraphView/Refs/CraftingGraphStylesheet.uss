@@ -1,0 +1,7 @@
+GridBackground
+{
+	--grid-background-color: var(--cs-colors-grid-light-grey-1);
+	--line-color: --cs-colors-grid-light-grey-2;
+	--think-line-color: --cs-colors-grid-light-grey-3;
+	--spacing: 25;
+}
