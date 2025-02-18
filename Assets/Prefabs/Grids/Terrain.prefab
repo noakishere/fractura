@@ -98,6 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9a1068dfce17f498a1d6469f818dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cell:
+    isTree: 0
+    isFire: 0
+    isWalkable: 0
+    cellType: 0
+    cellPosition: {x: 0, y: 0}
+    gCost: 0
+    hCost: 0
 --- !u!61 &7830428713954931364
 BoxCollider2D:
   m_ObjectHideFlags: 0

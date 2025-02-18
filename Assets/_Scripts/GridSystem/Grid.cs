@@ -14,6 +14,7 @@ public class Grid : SingletonMonoBehaviour<Grid>
     [SerializeField] private GameObject terrainPrefab;
 
     [SerializeField] private Cell[,] grid;
+    [SerializeField] public int[,] aStarMovementPenalty;
 
     [Header("TEST")]
     public Vector3Int? startGridPosition;
@@ -68,7 +69,7 @@ public class Grid : SingletonMonoBehaviour<Grid>
                 grid[x, y] = cell;
             }
         }
-
+        CalculateObstacles();
         DrawCell(grid);
 
 
@@ -135,6 +136,53 @@ public class Grid : SingletonMonoBehaviour<Grid>
         //{
         //    //Gizmos.color = Color.green;
         //}
+    }
+
+    public void CalculateObstacles()
+    {
+        //aStarMovementPenalty = new int[gridSize, gridSize];
+
+        //for(int x = 0; x < gridSize; x++)
+        //{
+        //    for(int y = 0; y < gridSize; y++)
+        //    {
+        //        aStarMovementPenalty[x, y] = 40;
+
+        //        foreach(Cell c in grid)
+        //        {
+        //            if(!c.isWalkable)
+        //            {
+        //                aStarMovementPenalty[x, y] = 0;
+        //                break;
+        //            }
+        //        }
+
+        //    }
+        //}
+
+        aStarMovementPenalty = new int[gridSize, gridSize];
+
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
+                // Only check the cell at (x, y) instead of iterating over all cells
+                if (!grid[x, y].isWalkable)
+                {
+                    aStarMovementPenalty[x, y] = 0; // Mark as an obstacle
+                }
+                else
+                {
+                    aStarMovementPenalty[x, y] = 40; // Default movement penalty
+                }
+            }
+        }
+
+        //foreach(int i in aStarMovementPenalty)
+        //{
+        //    Debug.Log(i);
+        //}
+
     }
 
     public Cell GetGridCell(int x, int y)
