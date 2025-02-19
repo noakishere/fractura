@@ -38,12 +38,12 @@ public class CameraDrag : MonoBehaviour
     {
         mouseScrollY = ctx.ReadValue<float>();
 
-        if(mouseScrollY > 0)
+        if(mouseScrollY > 0 && _mainCamera.orthographicSize - 0.5 >= 7f)
         {
             _mainCamera.orthographicSize -= 0.5f;
         }
 
-        else if(mouseScrollY < 0)
+        else if(mouseScrollY < 0 && _mainCamera.orthographicSize + 0.5 <= 15f)
         {
             _mainCamera.orthographicSize += 0.5f;
         }

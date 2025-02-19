@@ -15,6 +15,9 @@ namespace Fractura.CraftingSystem
         [SerializeField] private Sprite sprite;
         public Sprite ObjectSprite => sprite;
 
+        [SerializeField] private Sprite gridSprite;
+        public Sprite GetSprite => gridSprite;
+
         [SerializeField] private CraftingObjectRecipe recipe;
         public CraftingObjectRecipe Recipe => recipe;
 

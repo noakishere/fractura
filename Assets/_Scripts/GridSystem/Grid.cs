@@ -1,3 +1,4 @@
+using Fractura.CraftingSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,15 +17,24 @@ public class Grid : SingletonMonoBehaviour<Grid>
     [SerializeField] private Cell[,] grid;
     [SerializeField] public int[,] aStarMovementPenalty;
 
+    [SerializeField] private List<CraftingObject> craftingObjectIngredients;
+    [SerializeField] private GameObject lootCell;
+
+    [Header("Set Bounds")]
+    [SerializeField] private Transform circleParent;
+    [SerializeField] private GameObject wizardPrefab;
+    [SerializeField] private GameObject centerPrefab;
+    [SerializeField] private int minXCircle;
+    [SerializeField] private int maxXCircle;
+    [SerializeField] private int minYCircle;
+    [SerializeField] private int maxYCircle;
+
     [Header("TEST")]
+    public Transform pathParent;
+    public GameObject testPrefab;
     public Vector3Int? startGridPosition;
     public Vector3Int? endGridPosition;
     public Stack<Vector3> pathStack = new();
-    public Transform pathParent;
-    public GameObject testPrefab;
-
-    //public Vector3Int noValue = new Vector3Int(-9999, -9999, -9999);
-
 
     private void Start()
     {
@@ -71,6 +81,7 @@ public class Grid : SingletonMonoBehaviour<Grid>
         }
         CalculateObstacles();
         DrawCell(grid);
+        DrawWizardsAndClearInterior();
 
 
         //TEST
@@ -140,26 +151,6 @@ public class Grid : SingletonMonoBehaviour<Grid>
 
     public void CalculateObstacles()
     {
-        //aStarMovementPenalty = new int[gridSize, gridSize];
-
-        //for(int x = 0; x < gridSize; x++)
-        //{
-        //    for(int y = 0; y < gridSize; y++)
-        //    {
-        //        aStarMovementPenalty[x, y] = 40;
-
-        //        foreach(Cell c in grid)
-        //        {
-        //            if(!c.isWalkable)
-        //            {
-        //                aStarMovementPenalty[x, y] = 0;
-        //                break;
-        //            }
-        //        }
-
-        //    }
-        //}
-
         aStarMovementPenalty = new int[gridSize, gridSize];
 
         for (int x = 0; x < gridSize; x++)
@@ -177,12 +168,6 @@ public class Grid : SingletonMonoBehaviour<Grid>
                 }
             }
         }
-
-        //foreach(int i in aStarMovementPenalty)
-        //{
-        //    Debug.Log(i);
-        //}
-
     }
 
     public Cell GetGridCell(int x, int y)
@@ -235,6 +220,110 @@ public class Grid : SingletonMonoBehaviour<Grid>
             }
         }
     }
+
+    private void DrawWizardsAndClearInterior()
+    {
+        // Calculate the center of the circle based on your bounds.
+        float centerX = (minXCircle + maxXCircle) / 2f;
+        float centerY = (minYCircle + maxYCircle) / 2f;
+        Vector2 center = new Vector2(centerX, centerY);
+
+        // Determine the radius as half the smaller dimension of the bounds.
+        float radius = Mathf.Min(maxXCircle - minXCircle, maxYCircle - minYCircle) / 2f;
+        float radiusSquared = radius * radius;
+
+        // Define tolerances:
+        float edgeTolerance = 2f;      // How close a cell must be (in squared distance) to be considered on the edge.
+        float interiorThreshold = (radius - edgeTolerance) * (radius - edgeTolerance); // Anything strictly inside the edge.
+
+        // First, clear any existing cell objects within the entire bounds.
+        // (This assumes your grid objects are all children of this transform.)
+        List<Transform> childrenToRemove = new List<Transform>();
+        for (int x = minXCircle; x <= maxXCircle; x++)
+        {
+            for (int y = minYCircle; y <= maxYCircle; y++)
+            {
+                // We'll later instantiate edge markers if needed.
+                // For now, check if there's an existing cell object at (x,y)
+                // (This assumes your cell objects are positioned at integer coordinates.)
+                // You can do this in various ways. One approach is to iterate over all children:
+                foreach (Transform child in transform)
+                {
+                    Vector2 childPos = child.position;
+                    // Check if the child's position corresponds to (x,y)
+                    if (Mathf.Approximately(childPos.x, x) && Mathf.Approximately(childPos.y, y))
+                    {
+                        // Compute distance from center
+                        float dx = x - centerX;
+                        float dy = y - centerY;
+                        float distSquared = dx * dx + dy * dy;
+
+                        // If the cell is strictly inside the circle (not on the edge)
+                        if (distSquared < interiorThreshold)
+                        {
+                            childrenToRemove.Add(child);
+                        }
+                    }
+                }
+            }
+        }
+        // Remove all marked children.
+        foreach (Transform t in childrenToRemove)
+        {
+            Destroy(t.gameObject);
+        }
+
+        // Now, loop through the bounds and instantiate wizard edge markers where needed.
+        for (int x = minXCircle; x <= maxXCircle; x++)
+        {
+            for (int y = minYCircle; y <= maxYCircle; y++)
+            {
+                float dx = x - centerX;
+                float dy = y - centerY;
+                float distSquared = dx * dx + dy * dy;
+
+                // Check if the cell is near the circle's edge.
+                if (Mathf.Abs(distSquared - radiusSquared) <= edgeTolerance)
+                {
+                    // Instantiate the wizard (edge marker) prefab.
+                    GameObject newWizard = Instantiate(wizardPrefab, new Vector2(x, y), Quaternion.identity);
+                    newWizard.transform.parent = circleParent;
+
+                    // Mark this cell as an obstacle in A* (set movement penalty to 0).
+                    aStarMovementPenalty[x, y] = 0;
+                }
+                // Optionally, you can handle cells outside the circle differently,
+                // but here we only care about the edge and interior.
+            }
+        }
+
+        // Finally, instantiate the center object in the middle of the circle.
+        // If you have a separate prefab for the center, use that (here we assume centerPrefab exists).
+        // Otherwise, you can use wizardPrefab.
+        if (centerPrefab != null)
+        {
+            GameObject centerObj = Instantiate(centerPrefab, center, Quaternion.identity);
+            centerObj.transform.parent = circleParent;
+        }
+        else
+        {
+            // Fallback: reuse wizardPrefab for the center.
+            GameObject centerObj = Instantiate(wizardPrefab, center, Quaternion.identity);
+            centerObj.transform.parent = circleParent;
+        }
+    }
+
+    //private void DrawWizards()
+    //{
+    //    for(int x = minXCircle; x > maxXCircle; x++)
+    //    {
+    //        var newG = Instantiate(wizardPrefab, new Vector2(x, maxYCircle), Quaternion.identity);
+    //        newG.transform.parent = circleParent;
+
+    //        aStarMovementPenalty[x, maxYCircle] = 0;
+    //        //grid[x, maxYCircle] = null;
+    //    }
+    //}
 
     //private void OnDrawGizmos()
     //{

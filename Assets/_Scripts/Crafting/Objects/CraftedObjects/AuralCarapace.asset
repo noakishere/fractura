@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f3c13b6b520f34ba242bda2caf0d72, type: 3}
+  m_Name: AuralCarapace
+  m_EditorClassIdentifier: 
+  craftingObjectType: 0
+  objectName: Aural Carapace
+  sprite: {fileID: 21300000, guid: 203226cb71e1a6e47895fdf068b98ee2, type: 3}
+  recipe:
+    ingredients:
+    - ingredient: {fileID: 11400000, guid: 7d80fa9e83616a94f98c56b872e808ef, type: 2}
+      quantity: 1
+    - ingredient: {fileID: 11400000, guid: 818771205a070844e9cb23d097187d3a, type: 2}
+      quantity: 1
+  craftingTime: 0

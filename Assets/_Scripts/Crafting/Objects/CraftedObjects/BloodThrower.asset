@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f3c13b6b520f34ba242bda2caf0d72, type: 3}
+  m_Name: BloodThrower
+  m_EditorClassIdentifier: 
+  craftingObjectType: 0
+  objectName: Blood Thrower
+  sprite: {fileID: 21300000, guid: 953f8481b458c904f9a33050ed4db43a, type: 3}
+  recipe:
+    ingredients:
+    - ingredient: {fileID: 11400000, guid: 0e9f9eb9312232f40802ba3575103f70, type: 2}
+      quantity: 1
+    - ingredient: {fileID: 11400000, guid: 818771205a070844e9cb23d097187d3a, type: 2}
+      quantity: 1
+  craftingTime: 0
