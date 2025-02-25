@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f3c13b6b520f34ba242bda2caf0d72, type: 3}
+  m_Name: LungOfTheNight
+  m_EditorClassIdentifier: 
+  craftingObjectType: 3
+  objectName: Lung Of The Night
+  sprite: {fileID: 21300000, guid: 49b1da7d8a5cb1945bc70219b40b6449, type: 3}
+  gridSprite: {fileID: 0}
+  recipe:
+    ingredients:
+    - ingredient: {fileID: 11400000, guid: 7d80fa9e83616a94f98c56b872e808ef, type: 2}
+      quantity: 1
+    - ingredient: {fileID: 11400000, guid: 44b815ab3ca59eb4fa761772341ed1c5, type: 2}
+      quantity: 1
+  craftingTime: 0

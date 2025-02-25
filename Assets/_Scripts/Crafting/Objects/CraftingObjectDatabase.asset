@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingObjects:
   - {fileID: 11400000, guid: 964681952740bfc47977420c6ccfe28e, type: 2}
+  - {fileID: 11400000, guid: ab68964fcc8ebc14c9c7b413cf9f5c98, type: 2}
+  - {fileID: 11400000, guid: 1e82915a6c7165945a0b6b1e6d18d5d6, type: 2}
+  - {fileID: 11400000, guid: add25cf3e68507745aa9b25d54a6267a, type: 2}

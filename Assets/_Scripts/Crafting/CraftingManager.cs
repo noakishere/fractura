@@ -108,48 +108,48 @@ namespace Fractura.CraftingSystem
 
 
         #region Archive
-        public bool CanCraft(CraftingObject itemData)
-        {
-            if (itemData == null || itemData.Recipe == null)
-            {
-                Debug.LogWarning("Invalid crafting item or recipe.");
-                return false;
-            }
+        //public bool CanCraft(CraftingObject itemData)
+        //{
+        //    if (itemData == null || itemData.Recipe == null)
+        //    {
+        //        Debug.LogWarning("Invalid crafting item or recipe.");
+        //        return false;
+        //    }
 
-            foreach (var ingredient in itemData.Recipe.Ingredients)
-            {
-                if (playerInventory.GetItemCount(ingredient.Ingredient) < ingredient.Quantity)
-                {
-                    return false;
-                }
-            }
+        //    foreach (var ingredient in itemData.Recipe.Ingredients)
+        //    {
+        //        if (playerInventory.GetItemCount(ingredient.Ingredient) < ingredient.Quantity)
+        //        {
+        //            return false;
+        //        }
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
-        public void CraftItem(CraftingObject itemData)
-        {
-            if (!CanCraft(itemData))
-            {
-                Debug.LogWarning("Cannot craft: " + itemData.ObjectName);
-                OnCraftingFailed?.Invoke(itemData);
-                return;
-            }
+        //public void CraftItem(CraftingObject itemData)
+        //{
+        //    if (!CanCraft(itemData))
+        //    {
+        //        Debug.LogWarning("Cannot craft: " + itemData.ObjectName);
+        //        OnCraftingFailed?.Invoke(itemData);
+        //        return;
+        //    }
 
-            // Notify subscribers that crafting is starting.
-            OnCraftingStarted?.Invoke(itemData);
-            Debug.Log("Crafting started: " + itemData.ObjectName);
+        //    // Notify subscribers that crafting is starting.
+        //    OnCraftingStarted?.Invoke(itemData);
+        //    Debug.Log("Crafting started: " + itemData.ObjectName);
 
-            // Optionally, simulate crafting time.
-            if (itemData.CraftingTime > 0f)
-            {
-                StartCoroutine(CraftWithDelay(itemData));
-            }
-            else
-            {
-                CompleteCrafting(itemData);
-            }
-        }
+        //    // Optionally, simulate crafting time.
+        //    if (itemData.CraftingTime > 0f)
+        //    {
+        //        StartCoroutine(CraftWithDelay(itemData));
+        //    }
+        //    else
+        //    {
+        //        CompleteCrafting(itemData);
+        //    }
+        //}
 
         #endregion
     }

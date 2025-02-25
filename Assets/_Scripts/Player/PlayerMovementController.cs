@@ -6,9 +6,6 @@ namespace Topdown.Movement
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerMovementController : Mover
     {
-        [Header("Movement")]
-        private Vector2 movementInput;
-
         [Header("Rotate")]
         [SerializeField] private bool rotateWithMouse = true;
         [SerializeField] private bool rotateWithGamepad = false;
@@ -56,8 +53,8 @@ namespace Topdown.Movement
 
         private void OnMove(InputValue value)
         {
-            Vector3 playerInput = new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0);
-            currentInput = playerInput;
+            currentInput = new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0);
+            
         }
     }
 }

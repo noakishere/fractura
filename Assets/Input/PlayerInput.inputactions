@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "231214f4-edf1-43a9-bcd8-ebd36fb2d61e",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -46,6 +55,83 @@
                     "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "3D Vector",
+                    "id": "50b3fd01-08ee-4067-b31b-df69d9d1ce31",
+                    "path": "3DVector(mode=2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "8097e1c1-6406-4bdf-a99a-066dcb377f9f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "cc986968-a202-4b8a-956a-be14eb857b77",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "baf7b932-e69e-4cbc-8807-76ab3ab70c58",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3fd95e47-5975-4762-92c7-1ce0d6d57901",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "forward",
+                    "id": "dfe4dbeb-b1e5-45a7-b11d-c81adf173077",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "backward",
+                    "id": "212403b3-153d-42d3-9997-563f09f1e855",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

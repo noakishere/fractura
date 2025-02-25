@@ -61,6 +61,7 @@ namespace Fractura.CraftingSystem
             }
 
             //PlayerInventoryUIManager.Instance.AddItemToInventory(item);
+            OnItemAdded?.Invoke(item);
             Debug.Log($"Added {item.ObjectName} to inventory.");
         }
 

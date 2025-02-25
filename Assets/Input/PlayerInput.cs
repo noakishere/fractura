@@ -14,11 +14,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
-using UnityEngine.UI;
 
 public partial class @PlayerInput: IInputActionCollection2, IDisposable
 {
-    //DefaultControls defaultControls
     public InputActionAsset asset { get; }
     public @PlayerInput()
     {
@@ -46,6 +44,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""231214f4-edf1-43a9-bcd8-ebd36fb2d61e"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -70,6 +77,83 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""50b3fd01-08ee-4067-b31b-df69d9d1ce31"",
+                    ""path"": ""3DVector(mode=2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8097e1c1-6406-4bdf-a99a-066dcb377f9f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cc986968-a202-4b8a-956a-be14eb857b77"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""baf7b932-e69e-4cbc-8807-76ab3ab70c58"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""3fd95e47-5975-4762-92c7-1ce0d6d57901"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""dfe4dbeb-b1e5-45a7-b11d-c81adf173077"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""212403b3-153d-42d3-9997-563f09f1e855"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -80,6 +164,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Drag = m_Gameplay.FindAction("Drag", throwIfNotFound: true);
         m_Gameplay_Zoom = m_Gameplay.FindAction("Zoom", throwIfNotFound: true);
+        m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -143,12 +228,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Drag;
     private readonly InputAction m_Gameplay_Zoom;
+    private readonly InputAction m_Gameplay_Move;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
         public GameplayActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Drag => m_Wrapper.m_Gameplay_Drag;
         public InputAction @Zoom => m_Wrapper.m_Gameplay_Zoom;
+        public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,6 +251,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -174,6 +264,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -195,5 +288,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnDrag(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }

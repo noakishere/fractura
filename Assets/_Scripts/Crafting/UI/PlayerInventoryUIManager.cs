@@ -13,12 +13,14 @@ public class PlayerInventoryUIManager : SingletonMonoBehaviour<PlayerInventoryUI
 
     private void OnEnable()
     {
-        CraftingManager.Instance.OnCraftingCompleted += AddItemToInventory;
+        //CraftingManager.Instance.OnCraftingCompleted += AddItemToInventory;
+        Inventory.Instance.OnItemAdded += AddItemToInventory;
     }
 
     private void OnDisable()
     {
-        CraftingManager.Instance.OnCraftingCompleted -= AddItemToInventory;
+        //CraftingManager.Instance.OnCraftingCompleted -= AddItemToInventory;
+        Inventory.Instance.OnItemAdded -= AddItemToInventory;
     }
 
     public void AddItemToInventory(CraftingObject newObject)
