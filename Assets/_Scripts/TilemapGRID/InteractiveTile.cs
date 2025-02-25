@@ -45,8 +45,7 @@ public class InteractiveTile : MonoBehaviour
             {
                 Debug.Log("Hello");
                 Inventory.Instance.AddItem(obj);
-                //Destroy(gameObject);
-                SceneManager.LoadScene(0);
+                Destroy(gameObject);
             }    
         }
     }
