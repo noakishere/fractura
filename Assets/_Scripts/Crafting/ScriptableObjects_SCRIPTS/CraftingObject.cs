@@ -23,6 +23,15 @@ namespace Fractura.CraftingSystem
 
         [SerializeField] private float craftingTime = 0f;
         public float CraftingTime => craftingTime;
+
+
+        public ICraftingOutcomeStrategy outcomeStrategy;
+        public OutcomeParameters outcomeParameters;
+
+        public void ExecuteOutcome(GameObject user)
+        {
+            outcomeStrategy?.ExecuteOutcome(this, user, outcomeParameters);
+        }
     }
 }
 

@@ -4,9 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftingUIManager : SingletonMonoBehaviour<CraftingUIManager>
+public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIManager>
 {
     [SerializeField] private GameObject craftingTableObject;
+    public GameObject CraftingTableObject => craftingTableObject;
     [SerializeField] private CraftingTableItemBehaviour[] craftingTableItems = new CraftingTableItemBehaviour[4];
 
     private void OnEnable()

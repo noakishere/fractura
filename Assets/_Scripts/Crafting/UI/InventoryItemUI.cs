@@ -19,6 +19,26 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     [SerializeField] private CraftingObject objectReference;
     public CraftingObject ObjectReference => objectReference;
 
+    [SerializeField] private KeyCode keyboardNum;
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(keyboardNum))
+        {
+            if(objectReference != null)
+            {
+                if(CraftingUIManager.Instance.CraftingTableObject.activeSelf)
+                {
+                    SendToTable();
+                }
+                else
+                {
+                    objectReference.ExecuteOutcome(Inventory.Instance.gameObject);
+                }
+            }
+        }
+    }
+
     public void AssignItem(CraftingObject newObj)
     {
         if (!isAssigned)
@@ -97,7 +117,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("RIGHT CLICK");
+            objectReference.ExecuteOutcome(Inventory.Instance.gameObject);
         }
         if (eventData.button == PointerEventData.InputButton.Left)
         {

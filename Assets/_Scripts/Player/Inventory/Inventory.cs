@@ -51,18 +51,21 @@ namespace Fractura.CraftingSystem
         {
             if (item == null) return;
 
-            if (items.ContainsKey(item))
+            if(items.Keys.Count != 6)
             {
-                items[item]++;
-            }
-            else
-            {
-                items[item] = 1;
-            }
+                if (items.ContainsKey(item))
+                {
+                    items[item]++;
+                }
+                else
+                {
+                    items[item] = 1;
+                }
 
-            //PlayerInventoryUIManager.Instance.AddItemToInventory(item);
-            OnItemAdded?.Invoke(item);
-            Debug.Log($"Added {item.ObjectName} to inventory.");
+                //PlayerInventoryUIManager.Instance.AddItemToInventory(item);
+                OnItemAdded?.Invoke(item);
+                Debug.Log($"Added {item.ObjectName} to inventory.");
+            }
         }
 
         public void RemoveItems(CraftingObject item, int quantity)
