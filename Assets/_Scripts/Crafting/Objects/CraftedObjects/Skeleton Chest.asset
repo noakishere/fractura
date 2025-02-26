@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bc0f3a07784594f8a74144718595db, type: 3}
+  m_Name: Skeleton Chest
+  m_EditorClassIdentifier: 
+  craftingObjectType: 0
+  objectName: 
+  sprite: {fileID: 21300000, guid: 69f52bc63f8e4d64fbe00399963a4f9b, type: 3}
+  gridSprite: {fileID: 0}
+  recipe:
+    ingredients:
+    - ingredient: {fileID: 11400000, guid: 44b815ab3ca59eb4fa761772341ed1c5, type: 2}
+      quantity: 1
+    - ingredient: {fileID: 11400000, guid: 7d80fa9e83616a94f98c56b872e808ef, type: 2}
+      quantity: 1
+    - ingredient: {fileID: 11400000, guid: 0e9f9eb9312232f40802ba3575103f70, type: 2}
+      quantity: 1
+  craftingTime: 0
+  buildPosition: {x: -7.75, y: 0}
+  buildGameObject: {fileID: 4851630433698621372, guid: 3eb14008da4966d49a028f8c4240da89, type: 3}
