@@ -15,10 +15,11 @@ MonoBehaviour:
   craftingObjectType: 0
   objectName: Aural Carapace
   sprite: {fileID: 21300000, guid: 203226cb71e1a6e47895fdf068b98ee2, type: 3}
+  gridSprite: {fileID: 0}
   recipe:
     ingredients:
     - ingredient: {fileID: 11400000, guid: 7d80fa9e83616a94f98c56b872e808ef, type: 2}
       quantity: 1
-    - ingredient: {fileID: 11400000, guid: 818771205a070844e9cb23d097187d3a, type: 2}
+    - ingredient: {fileID: 11400000, guid: e16684d2295c413499c6e3ddf8502b30, type: 2}
       quantity: 1
   craftingTime: 0

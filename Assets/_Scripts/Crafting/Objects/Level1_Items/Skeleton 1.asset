@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c09502e483ccc24a8bcc6d61ee56f17, type: 3}
-  m_Name: HollowRibcage2
+  m_Script: {fileID: 11500000, guid: 64bc0f3a07784594f8a74144718595db, type: 3}
+  m_Name: Skeleton 1
   m_EditorClassIdentifier: 
-  craftingObjectType: 1
-  objectName: Hollow Ribcage
-  sprite: {fileID: 21300000, guid: 05bf0b4910fe6154795813df46439fdc, type: 3}
+  craftingObjectType: 0
+  objectName: Skeleton
+  sprite: {fileID: 21300000, guid: 2650dc54ba23d1540926af178b76fd00, type: 3}
   gridSprite: {fileID: 0}
   recipe:
     ingredients: []
   craftingTime: 0
+  buildPosition: {x: 9.95, y: -6.52}
+  buildGameObject: {fileID: 4851630433698621372, guid: 064291e5245675a42a6468d698e4e7ef, type: 3}

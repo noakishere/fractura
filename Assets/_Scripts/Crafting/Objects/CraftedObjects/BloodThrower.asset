@@ -15,10 +15,11 @@ MonoBehaviour:
   craftingObjectType: 0
   objectName: Blood Thrower
   sprite: {fileID: 21300000, guid: 953f8481b458c904f9a33050ed4db43a, type: 3}
+  gridSprite: {fileID: 0}
   recipe:
     ingredients:
     - ingredient: {fileID: 11400000, guid: 0e9f9eb9312232f40802ba3575103f70, type: 2}
       quantity: 1
-    - ingredient: {fileID: 11400000, guid: 818771205a070844e9cb23d097187d3a, type: 2}
+    - ingredient: {fileID: 11400000, guid: e16684d2295c413499c6e3ddf8502b30, type: 2}
       quantity: 1
   craftingTime: 0

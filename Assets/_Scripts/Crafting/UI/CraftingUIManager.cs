@@ -2,6 +2,7 @@ using Fractura.CraftingSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIManager>
@@ -9,6 +10,8 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
     [SerializeField] private GameObject craftingTableObject;
     public GameObject CraftingTableObject => craftingTableObject;
     [SerializeField] private CraftingTableItemBehaviour[] craftingTableItems = new CraftingTableItemBehaviour[4];
+
+    [SerializeField] private TextMeshProUGUI textMeshProItemInteraction;
 
     private void OnEnable()
     {
@@ -52,6 +55,21 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
                 Debug.Log($"{gameObject.name}: Assigning {newObject.name} to {item.gameObject.name}");
                 break;
             }
+        }
+    }
+
+    public void ShowItemTextOnScreen(Vector3 screenPos)
+    {
+        textMeshProItemInteraction.transform.position = screenPos;
+        textMeshProItemInteraction.text = $"(E)";
+        textMeshProItemInteraction.gameObject.SetActive(true);
+    }
+
+    public void HideItemTextOnScreen()
+    {
+        if (textMeshProItemInteraction != null)
+        {
+            textMeshProItemInteraction.gameObject.SetActive(false);
         }
     }
 

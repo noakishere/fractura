@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7551104474526244743}
   - component: {fileID: 8748872848136756310}
-  - component: {fileID: 3488468196002844642}
   - component: {fileID: 6484451526624997674}
+  - component: {fileID: 1198144390124083867}
   m_Layer: 0
-  m_Name: Skeleton Chest
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 722208485
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 720341006, guid: 9587612daac9af7489965451739aeed5, type: 3}
+  m_Sprite: {fileID: -811547901, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,25 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3488468196002844642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4851630433698621372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c454b4bbdfedc47aad563a1f6a13f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canInteract: 0
-  objects:
-  - {fileID: 11400000, guid: 438da13bb22970e4f91989b1a335b9a9, type: 2}
-  - {fileID: 11400000, guid: 95324b8295eada9448329cd22680cc40, type: 2}
-  - {fileID: 11400000, guid: d44cae011f0314744b44e444a688a027, type: 2}
-  textMeshPro: {fileID: 0}
-  offset: {x: 0, y: 1, z: 0}
 --- !u!61 &6484451526624997674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +131,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &1198144390124083867
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4851630433698621372}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fcae41d0795318499cdf8221a981998, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
