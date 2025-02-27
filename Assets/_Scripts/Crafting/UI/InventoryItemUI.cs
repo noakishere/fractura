@@ -21,6 +21,13 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     [SerializeField] private KeyCode keyboardNum;
 
+    private CraftingUIManager craftingUIManager;
+
+    private void Start()
+    {
+        craftingUIManager = CraftingUIManager.Instance;
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(keyboardNum))
@@ -83,7 +90,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void SendToTable()
     {
-        if(isAssigned && !isOnTheTable)
+        if(isAssigned && !isOnTheTable && craftingUIManager.CraftingTableObject.gameObject.activeSelf)
         {
             CraftingManager.Instance.AddItemToTable(objectReference);
             isOnTheTable = true;
