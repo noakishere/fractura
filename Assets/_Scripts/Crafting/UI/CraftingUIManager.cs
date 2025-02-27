@@ -61,7 +61,7 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
     public void ShowItemTextOnScreen(Vector3 screenPos)
     {
         textMeshProItemInteraction.transform.position = screenPos;
-        textMeshProItemInteraction.text = $"(E)";
+        //textMeshProItemInteraction.text = $"(e)";
         textMeshProItemInteraction.gameObject.SetActive(true);
     }
 
