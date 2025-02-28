@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Fractura.CraftingSystem
 {
-    public class Inventory : SingletonPersistentMonoBehaviour<Inventory>
+    public class Inventory : SingletonMonoBehaviour<Inventory>
     {
         [SerializedDictionary("Object", "Count")]
         [SerializeField] private SerializedDictionary<CraftingObject, int> items = new SerializedDictionary<CraftingObject, int>();

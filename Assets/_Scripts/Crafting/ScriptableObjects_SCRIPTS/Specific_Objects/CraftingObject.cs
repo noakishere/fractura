@@ -28,9 +28,13 @@ namespace Fractura.CraftingSystem
         public ICraftingOutcomeStrategy outcomeStrategy;
         public OutcomeParameters outcomeParameters;
 
+        public Action<CraftingObject> OnObjectExecuted;
+
         public void ExecuteOutcome(GameObject user)
         {
             outcomeStrategy?.ExecuteOutcome(this, user, outcomeParameters);
+
+            OnObjectExecuted?.Invoke(this);
         }
     }
 }
