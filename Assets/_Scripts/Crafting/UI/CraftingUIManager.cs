@@ -12,6 +12,8 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
     [SerializeField] private CraftingTableItemBehaviour[] craftingTableItems = new CraftingTableItemBehaviour[4];
 
     [SerializeField] private TextMeshProUGUI textMeshProItemInteraction;
+    [SerializeField] private TextMeshProUGUI textMeshProNPC;
+
 
     private void OnEnable()
     {
@@ -70,6 +72,21 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
         if (textMeshProItemInteraction != null)
         {
             textMeshProItemInteraction.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowNPCTextOnScreen(Vector3 screenPos)
+    {
+        textMeshProNPC.transform.position = screenPos;
+        textMeshProNPC.text = $"(e)";
+        textMeshProNPC.gameObject.SetActive(true);
+    }
+
+    public void HideNPCTextOnScreen()
+    {
+        if (textMeshProNPC != null)
+        {
+            textMeshProNPC.gameObject.SetActive(false);
         }
     }
 
