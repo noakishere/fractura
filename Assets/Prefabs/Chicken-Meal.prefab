@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  dialogue: a nice chicken meal for the peeps
-  textMeshPro: {fileID: 0}
+  dialogue: a nice chicken soup for the peeps
   offset: {x: 0, y: 1, z: 0}
 --- !u!58 &6597596984654620273
 CircleCollider2D:
