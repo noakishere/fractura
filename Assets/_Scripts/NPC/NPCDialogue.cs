@@ -10,9 +10,7 @@ public class NPCDialogue : MonoBehaviour
 
     [SerializeField] private string dialogue;
     [Header("UI Settings")]
-    // Reference to the TextMeshPro component that will be shown above the interactable object.
     [SerializeField] private TextMeshProUGUI textMeshPro;
-    // Offset to position the text above the interactable object.
     [SerializeField] private Vector3 offset = new Vector3(0, 1f, 0);
 
 
@@ -23,10 +21,6 @@ public class NPCDialogue : MonoBehaviour
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + offset);
 
         CraftingUIManager.Instance.ShowNPCTextOnScreen(screenPos);
-
-        //textMeshPro.transform.position = screenPos;
-        //textMeshPro.text = $"(E)";
-        //textMeshPro.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -34,11 +28,6 @@ public class NPCDialogue : MonoBehaviour
         canInteract = false;
 
         CraftingUIManager.Instance.HideNPCTextOnScreen();
-
-        //if (textMeshPro != null)
-        //{
-        //    textMeshPro.gameObject.SetActive(false);
-        //}
     }
 
 

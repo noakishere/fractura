@@ -7,6 +7,7 @@ public class CameraTrigger : MonoBehaviour
     [SerializeField] private GameObject m_Camera;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CameraControl.Instance.ChangeCamera(m_Camera);
+        if(collision.tag == "Player")
+            CameraControl.Instance.ChangeCamera(m_Camera);
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using TMPro;
 public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image img;
@@ -22,6 +22,8 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     [SerializeField] private KeyCode keyboardNum;
 
     private CraftingUIManager craftingUIManager;
+
+    [SerializeField] private TextMeshProUGUI itemName;
 
     private void Start()
     {
@@ -52,6 +54,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
         {
             objectReference = newObj;
             img.sprite = newObj.ObjectSprite;
+            itemName.text = newObj.ObjectName;
             Debug.Log($"<b>{gameObject.name}</b>: Image renderer's image is set to {newObj.ObjectSprite}");
             
             isAssigned = true;
@@ -85,6 +88,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
         isAssigned = false;
         img.sprite = null;
         ToggleImageRenderer(false);
+        itemName.text = "";
         Debug.Log($"{gameObject.name}: Emptied and nulled.");
     }
 
@@ -109,6 +113,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
         if(!isOnTheTable)
         {
             img.color = Color.white;
+            itemName.gameObject.SetActive(false);
         }
     }
 
@@ -117,6 +122,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
         if(!isOnTheTable)
         {
             img.color = Color.red;
+            itemName.gameObject.SetActive(true);
         }
     }
 
