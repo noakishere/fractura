@@ -11,8 +11,11 @@ public class RatMovementBehaviour : MonoBehaviour
     // How long the rat waits at each waypoint.
     [SerializeField] private float waitTime = 2f;
 
+    private bool shouldWalk;
+
     private void Start()
     {
+        shouldWalk = true;
         if (waypoints.Length > 0)
         {
             // Start the movement coroutine.
@@ -26,19 +29,16 @@ public class RatMovementBehaviour : MonoBehaviour
 
     private IEnumerator MoveBetweenWaypoints()
     {
-        while (true)
+        while (shouldWalk)
         {
-            // Choose a random waypoint.
             Transform targetWaypoint = waypoints[Random.Range(0, waypoints.Length)];
 
-            // Move toward the target waypoint until we're close enough.
             while (Vector3.Distance(transform.position, targetWaypoint.position) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, moveSpeed * Time.deltaTime);
                 yield return null;
             }
 
-            // Once reached, wait for a couple of seconds.
             yield return new WaitForSeconds(waitTime);
         }
     }
