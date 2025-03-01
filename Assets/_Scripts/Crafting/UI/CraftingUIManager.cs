@@ -104,6 +104,7 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
     private void CraftingFailed(CraftingObject obj)
     {
         Debug.Log("CRAFTING FAILED");
+        AddLog("CRAFTING FAILED, NO RECIPE FOUND");
     }
 
     internal void WriteNPCText(string dialogue)

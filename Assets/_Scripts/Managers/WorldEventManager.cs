@@ -24,10 +24,12 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
             case CraftingEffectType.ChickenMeal:
                 Debug.Log("got them chickens");
                 NPCManager.Instance.OnChickenServed();
+                CraftingUIManager.Instance.AddLog("Chicken Objective Completed.");
                 break;
             case CraftingEffectType.WoodFire:
                 Debug.Log("Wood fire made");
                 SwapAreaTiles();
+                CraftingUIManager.Instance.AddLog("Wood Fire Objective Completed.");
                 break;
             default:
                 // No dynamic effect.

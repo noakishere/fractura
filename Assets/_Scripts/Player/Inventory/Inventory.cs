@@ -2,6 +2,7 @@ using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
 
 namespace Fractura.CraftingSystem
 {
@@ -109,6 +110,7 @@ namespace Fractura.CraftingSystem
                 else
                 {
                     Debug.LogWarning("Inventory is full. Cannot add new item.");
+                    CraftingUIManager.Instance.AddLog($"Inventory is full. Cannot add {item.ObjectName}.");
                     return false;
                 }
             }
@@ -133,6 +135,7 @@ namespace Fractura.CraftingSystem
                 }
 
                 Debug.Log($"Removed {quantity} of {item.ObjectName} from inventory.");
+                CraftingUIManager.Instance.AddLog($"Removed {quantity} of {item.ObjectName} from inventory.");
             }
             else
             {
@@ -155,6 +158,7 @@ namespace Fractura.CraftingSystem
                 }
 
                 Debug.Log($"Removed {item.ObjectName} from inventory.");
+                CraftingUIManager.Instance.AddLog($"Removed {item.ObjectName} from inventory.");
             }
             else
             {
