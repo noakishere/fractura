@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12f3c13b6b520f34ba242bda2caf0d72, type: 3}
-  m_Name: MoreWood
+  m_Name: Fire
   m_EditorClassIdentifier: 
   craftingObjectType: 0
-  objectName: 
-  sprite: {fileID: 21300000, guid: 241308ec4d657da46b96c803177e34d6, type: 3}
-  gridSprite: {fileID: 0}
+  objectName: Fire
+  sprite: {fileID: 21300000, guid: 11d9ebe2ae9da6140b1d7c8df8004004, type: 3}
+  gridSprite: {fileID: 21300000, guid: 9758a3f7330d46b40bd44cd322d65742, type: 3}
   recipe:
-    ingredients:
-    - ingredient: {fileID: 11400000, guid: 4954e590f6c447d4a9995a01a51663b0, type: 2}
-      quantity: 2
+    ingredients: []
   craftingTime: 0
   effectType: 0

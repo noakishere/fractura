@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIManager>
 {
@@ -14,6 +15,10 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
     [SerializeField] private TextMeshProUGUI textMeshProItemInteraction;
     [SerializeField] private TextMeshProUGUI textMeshProNPC;
 
+    [Header("Logging")]
+    [SerializeField] private GameObject scrollBarContentParent;
+    [SerializeField] private TextMeshProUGUI logUpdatePrefab;
+    [SerializeField] private ScrollRect logScrollRect;
 
     private void OnEnable()
     {
@@ -104,5 +109,16 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
     internal void WriteNPCText(string dialogue)
     {
         textMeshProNPC.text = dialogue;
+    }
+
+    public void AddLog(string text)
+    {
+        TextMeshProUGUI newLog = Instantiate(logUpdatePrefab, scrollBarContentParent.transform);
+        newLog.text = text;
+
+        Canvas.ForceUpdateCanvases();
+
+        // Set the scroll rect to the bottom.
+        logScrollRect.verticalNormalizedPosition = 0f;
     }
 }

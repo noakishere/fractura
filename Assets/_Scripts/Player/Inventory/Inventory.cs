@@ -85,11 +85,13 @@ namespace Fractura.CraftingSystem
                     items[item]++;
                     OnItemAdded?.Invoke(item, items[item]);
                     Debug.Log($"Updated {item.ObjectName} count to {items[item]} in inventory.");
+                    CraftingUIManager.Instance.AddLog($"Updated {item.ObjectName} count to {items[item]} in inventory.");
                     return true;
                 }
                 else
                 {
                     Debug.LogWarning($"{item.ObjectName} has reached its maximum stack size.");
+                    CraftingUIManager.Instance.AddLog($"{item.ObjectName} has reached its maximum stack size.");
                     return false;
                 }
             }
@@ -101,6 +103,7 @@ namespace Fractura.CraftingSystem
                     items[item] = 1;
                     OnItemAdded?.Invoke(item, 1);
                     Debug.Log($"Added {item.ObjectName} to inventory.");
+                    CraftingUIManager.Instance.AddLog($"Added {item.ObjectName} to inventory.");
                     return true;
                 }
                 else

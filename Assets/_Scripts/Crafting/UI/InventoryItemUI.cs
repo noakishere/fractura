@@ -110,6 +110,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
         img.sprite = null;
         ToggleImageRenderer(false);
         itemName.text = "";
+        objectReference = null;
         Debug.Log($"{gameObject.name}: Emptied and nulled.");
     }
 
@@ -159,8 +160,14 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (!CraftingUIManager.Instance.CraftingTableObject.activeSelf)
+            if (!CraftingUIManager.Instance.CraftingTableObject.activeSelf && objectReference != null)
             {
+                if (itemsCount <= 0)
+                {
+                    EmptyItem();
+                    return;
+                }
+
                 Vector3 playerPos = Inventory.Instance.gameObject.transform.position;
                 Vector3 spawnPos = playerPos + new Vector3(0, 2f, 0);
 
@@ -182,16 +189,6 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
                 // Update the inventory count and UI:
                 itemsCount--;
                 Inventory.Instance.RemoveItems(objectReference, 1);
-                //if (itemsCount <= 0)
-                //{
-                //    EmptyItem();
-                //    // Also inform the Inventory system if needed, e.g.,
-                //    // Inventory.Instance.RemoveItems(objectReference, 1);
-                //}
-                //else
-                //{
-                //    itemCount.text = itemsCount.ToString();
-                //}
             }
         }
         if (eventData.button == PointerEventData.InputButton.Left)

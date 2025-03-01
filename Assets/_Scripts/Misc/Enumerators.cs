@@ -19,4 +19,5 @@ public enum CraftingEffectType
 {
     None,
     ChickenMeal,
+    WoodFire,
 }
