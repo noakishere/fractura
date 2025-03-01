@@ -45,14 +45,18 @@ public class InteractiveTile : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
+                bool allAdded = true;
                 foreach(var obj in objects)
                 {
-                    //if(!Inventory.Instance.Items.ContainsKey(obj))
-                    //{
-                        Inventory.Instance.AddItem(obj);
-                    //}
+                    bool addedObj = Inventory.Instance.AttemptAddItem(obj);
+
+                    if (!addedObj)
+                    {
+                        Debug.Log($"Couldn't add discarded object {obj.ObjectName}");
+                        allAdded = false;
+                    }
                 }
-                if(!isInfinite)
+                if (!isInfinite && allAdded)
                     Destroy(gameObject);
             }    
         }

@@ -72,6 +72,45 @@ namespace Fractura.CraftingSystem
             }
         }
 
+        public bool AttemptAddItem(CraftingObject item)
+        {
+            if (item == null)
+                return false;
+
+            // If the item already exists in the inventory, update its count.
+            if (items.ContainsKey(item))
+            {
+                if (items[item] < 6)  // Assuming 6 is the maximum stack size per item.
+                {
+                    items[item]++;
+                    OnItemAdded?.Invoke(item, items[item]);
+                    Debug.Log($"Updated {item.ObjectName} count to {items[item]} in inventory.");
+                    return true;
+                }
+                else
+                {
+                    Debug.LogWarning($"{item.ObjectName} has reached its maximum stack size.");
+                    return false;
+                }
+            }
+            else
+            {
+                // Item doesn't exist yet; check if there's space for a new unique item.
+                if (items.Keys.Count < 6)
+                {
+                    items[item] = 1;
+                    OnItemAdded?.Invoke(item, 1);
+                    Debug.Log($"Added {item.ObjectName} to inventory.");
+                    return true;
+                }
+                else
+                {
+                    Debug.LogWarning("Inventory is full. Cannot add new item.");
+                    return false;
+                }
+            }
+        }
+
         public void RemoveItems(CraftingObject item, int quantity)
         {
             if (item == null || quantity <= 0) return;

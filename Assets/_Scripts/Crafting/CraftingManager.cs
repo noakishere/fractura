@@ -101,19 +101,24 @@ namespace Fractura.CraftingSystem
 
         private void CompleteCrafting(CraftingObject itemData)
         {
-            // Remove ingredients from inventory.
-            foreach (var ingredient in itemData.Recipe.Ingredients)
+            bool attemptAdd = playerInventory.AttemptAddItem(itemData);
+            
+            if(attemptAdd)
             {
-                playerInventory.RemoveItems(ingredient.Ingredient, ingredient.Quantity);
+                // Remove ingredients from inventory.
+                foreach (var ingredient in itemData.Recipe.Ingredients)
+                {
+                    playerInventory.RemoveItems(ingredient.Ingredient, ingredient.Quantity);
+                }
+
+                OnCraftingCompleted?.Invoke(itemData);
+                Debug.Log("Crafting completed: " + itemData.ObjectName);
             }
-
-            OnCraftingCompleted?.Invoke(itemData);
-
-            // Add the crafted item to the inventory.
-            playerInventory.AddItem(itemData);
-
-            // Notify subscribers that crafting completed successfully.
-            Debug.Log("Crafting completed: " + itemData.ObjectName);
+            else
+            {
+                OnCraftingFailed?.Invoke(itemData);
+                Debug.LogWarning("Crafting Failed Because Stack is full for: " + itemData.ObjectName);
+            }
         }
 
         public void AddItemToTable(CraftingObject newObj)
