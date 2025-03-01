@@ -9,6 +9,7 @@ public class NPCDialogue : MonoBehaviour
     [SerializeField] private bool canInteract;
 
     [SerializeField] private string dialogue;
+    //[SerializeField] private List<string> nextDialogues;
     [Header("UI Settings")]
     //[SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private Vector3 offset = new Vector3(0, 1f, 0);
@@ -30,7 +31,6 @@ public class NPCDialogue : MonoBehaviour
         CraftingUIManager.Instance.HideNPCTextOnScreen();
     }
 
-
     private void Update()
     {
         if (canInteract)
@@ -41,5 +41,10 @@ public class NPCDialogue : MonoBehaviour
                 //textMeshPro.text = dialogue;
             }
         }
+    }
+
+    public void ChangeDialogue(string dialogue)
+    {
+        this.dialogue = dialogue;
     }
 }

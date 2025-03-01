@@ -16,7 +16,7 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
         {
             case CraftingEffectType.ChickenMeal:
                 Debug.Log("got them chickens");
-                //    NPCManager.Instance.UpdateDialogue("chickenMeal");
+                NPCManager.Instance.OnChickenServed();
                 break;
             //case CraftingEffectType.Sword:
             //    DoorManager.Instance.CloseDoor("mainEntrance");
