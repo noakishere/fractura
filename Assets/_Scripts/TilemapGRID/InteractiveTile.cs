@@ -10,6 +10,7 @@ using UnityEngine.Tilemaps;
 public class InteractiveTile : MonoBehaviour
 {
     [SerializeField] private bool canInteract;
+    [SerializeField] private bool isInfinite;
     [SerializeField] private List<CraftingObject> objects;
     
     [Header("UI Settings")]
@@ -36,11 +37,6 @@ public class InteractiveTile : MonoBehaviour
         canInteract = false;
 
         CraftingUIManager.Instance.HideItemTextOnScreen();
-
-        //if (textMeshPro != null)
-        //{
-        //    textMeshPro.gameObject.SetActive(false);
-        //}
     }
 
     private void Update()
@@ -49,14 +45,21 @@ public class InteractiveTile : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("Hello");
-
                 foreach(var obj in objects)
                 {
-                    Inventory.Instance.AddItem(obj);
+                    //if(!Inventory.Instance.Items.ContainsKey(obj))
+                    //{
+                        Inventory.Instance.AddItem(obj);
+                    //}
                 }
-                Destroy(gameObject);
+                if(!isInfinite)
+                    Destroy(gameObject);
             }    
         }
+    }
+
+    public void SetObject(CraftingObject newObj)
+    {
+        objects.Add(newObj);
     }
 }

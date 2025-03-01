@@ -25,9 +25,14 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
         CraftingManager.Instance.OnCraftingFailed -= CraftingFailed;
     }
 
-    public void OpenCraftingTab()
+    public void ToggleCraftingTab()
     {
         craftingTableObject.SetActive(!craftingTableObject.active);
+    }
+
+    public void OpenCraftingTab()
+    {
+        craftingTableObject.SetActive(true);
     }
 
     public void CloseCraftingTab()
@@ -45,6 +50,7 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
         {
             item.EmptyItem();
         }
+        CloseCraftingTab();
     }
 
     public void AddItemToTable(CraftingObject newObject)

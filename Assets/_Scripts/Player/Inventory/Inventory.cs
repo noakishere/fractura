@@ -9,17 +9,18 @@ namespace Fractura.CraftingSystem
     {
         [SerializedDictionary("Object", "Count")]
         [SerializeField] private SerializedDictionary<CraftingObject, int> items = new SerializedDictionary<CraftingObject, int>();
+        public SerializedDictionary<CraftingObject, int> Items => items;
         
         #region Actions
-        public event Action<CraftingObject> OnItemAdded;
-        public event Action<CraftingObject> OnItemRemoved;
+        public event Action<CraftingObject, int> OnItemAdded;
+        public event Action<CraftingObject, int> OnItemRemoved;
         #endregion
 
         private void Start()
         {
             foreach(CraftingObject co in items.Keys)
             {
-                PlayerInventoryUIManager.Instance.AddItemToInventory(co);
+                PlayerInventoryUIManager.Instance.AddItemToInventory(co, items[co]);
             }
         }
 
@@ -55,7 +56,10 @@ namespace Fractura.CraftingSystem
             {
                 if (items.ContainsKey(item))
                 {
-                    items[item]++;
+                    if(items[item] < 6)
+                    {
+                        items[item]++;
+                    }
                 }
                 else
                 {
@@ -63,7 +67,7 @@ namespace Fractura.CraftingSystem
                 }
 
                 //PlayerInventoryUIManager.Instance.AddItemToInventory(item);
-                OnItemAdded?.Invoke(item);
+                OnItemAdded?.Invoke(item, items[item]);
                 Debug.Log($"Added {item.ObjectName} to inventory.");
             }
         }
@@ -78,13 +82,14 @@ namespace Fractura.CraftingSystem
                 if (currentQuantity <= 0)
                 {
                     items.Remove(item);
+                    PlayerInventoryUIManager.Instance.RemoveItem(item);
                 }
                 else
                 {
                     items[item] = currentQuantity;
+                    PlayerInventoryUIManager.Instance.UpdateItemCountUI(item, items[item]);
                 }
 
-                PlayerInventoryUIManager.Instance.RemoveItem(item);
                 Debug.Log($"Removed {quantity} of {item.ObjectName} from inventory.");
             }
             else

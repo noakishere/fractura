@@ -49,22 +49,46 @@ namespace Fractura.CraftingSystem
 
         private CraftingObject FindMatchingRecipe()
         {
-            List<string> placedIDs = tableCraftingObjects.Select(ing => ing.ObjectName).OrderBy(id => id).ToList();
-
-            foreach(string str in placedIDs)
+            // Build a frequency dictionary for the placed ingredients.
+            Dictionary<string, int> placedCounts = new Dictionary<string, int>();
+            foreach (var obj in tableCraftingObjects)
             {
-                Debug.Log(str);
+                string key = obj.ObjectName;
+                if (placedCounts.ContainsKey(key))
+                    placedCounts[key]++;
+                else
+                    placedCounts[key] = 1;
             }
 
             foreach (var recipe in craftingObjectsDB.CraftingObjects)
             {
-                List<string> recipeIDs = recipe.Recipe.Ingredients.Select(ing => ing.Ingredient.ObjectName).OrderBy(id => id).ToList();
-
-                // Check if the counts match and if every ingredient is the same.
-                if (placedIDs.Count == recipeIDs.Count && placedIDs.SequenceEqual(recipeIDs))
+                Dictionary<string, int> recipeCounts = new Dictionary<string, int>();
+                foreach (var ingredient in recipe.Recipe.Ingredients)
                 {
-                    return recipe;
+                    string key = ingredient.Ingredient.ObjectName;
+
+                    // Assume each ingredient has a Quantity property.
+                    if (recipeCounts.ContainsKey(key))
+                        recipeCounts[key] += ingredient.Quantity;
+                    else
+                        recipeCounts[key] = ingredient.Quantity;
                 }
+
+                if (placedCounts.Count != recipeCounts.Count)
+                    continue;
+
+                bool isMatch = true;
+                foreach (var kvp in recipeCounts)
+                {
+                    if (!placedCounts.TryGetValue(kvp.Key, out int placedCount) || placedCount != kvp.Value)
+                    {
+                        isMatch = false;
+                        break;
+                    }
+                }
+
+                if (isMatch)
+                    return recipe;
             }
             return null;
         }
@@ -105,52 +129,5 @@ namespace Fractura.CraftingSystem
                 tableCraftingObjects.Remove(newObj);
             }
         }
-
-
-        #region Archive
-        //public bool CanCraft(CraftingObject itemData)
-        //{
-        //    if (itemData == null || itemData.Recipe == null)
-        //    {
-        //        Debug.LogWarning("Invalid crafting item or recipe.");
-        //        return false;
-        //    }
-
-        //    foreach (var ingredient in itemData.Recipe.Ingredients)
-        //    {
-        //        if (playerInventory.GetItemCount(ingredient.Ingredient) < ingredient.Quantity)
-        //        {
-        //            return false;
-        //        }
-        //    }
-
-        //    return true;
-        //}
-
-        //public void CraftItem(CraftingObject itemData)
-        //{
-        //    if (!CanCraft(itemData))
-        //    {
-        //        Debug.LogWarning("Cannot craft: " + itemData.ObjectName);
-        //        OnCraftingFailed?.Invoke(itemData);
-        //        return;
-        //    }
-
-        //    // Notify subscribers that crafting is starting.
-        //    OnCraftingStarted?.Invoke(itemData);
-        //    Debug.Log("Crafting started: " + itemData.ObjectName);
-
-        //    // Optionally, simulate crafting time.
-        //    if (itemData.CraftingTime > 0f)
-        //    {
-        //        StartCoroutine(CraftWithDelay(itemData));
-        //    }
-        //    else
-        //    {
-        //        CompleteCrafting(itemData);
-        //    }
-        //}
-
-        #endregion
     }
 }
