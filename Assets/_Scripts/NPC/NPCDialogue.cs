@@ -10,7 +10,7 @@ public class NPCDialogue : MonoBehaviour
 
     [SerializeField] private string dialogue;
     [Header("UI Settings")]
-    [SerializeField] private TextMeshProUGUI textMeshPro;
+    //[SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private Vector3 offset = new Vector3(0, 1f, 0);
 
 
@@ -37,7 +37,8 @@ public class NPCDialogue : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                textMeshPro.text = dialogue;
+                CraftingUIManager.Instance.WriteNPCText(dialogue);
+                //textMeshPro.text = dialogue;
             }
         }
     }

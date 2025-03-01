@@ -94,4 +94,9 @@ public class CraftingUIManager : SingletonPersistentMonoBehaviour<CraftingUIMana
     {
         Debug.Log("CRAFTING FAILED");
     }
+
+    internal void WriteNPCText(string dialogue)
+    {
+        textMeshProNPC.text = dialogue;
+    }
 }

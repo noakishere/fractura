@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Chicken-Meal
   m_EditorClassIdentifier: 
   craftingObjectType: 0
-  objectName: 
-  sprite: {fileID: 0}
+  objectName: Chicken Meal
+  sprite: {fileID: 21300000, guid: db5e2172e18f1054d9a4480fe896ec1b, type: 3}
   gridSprite: {fileID: 0}
   recipe:
-    ingredients: []
+    ingredients:
+    - ingredient: {fileID: 11400000, guid: d03937fb9bdf1e544861e71a9f985704, type: 2}
+      quantity: 1
+    - ingredient: {fileID: 11400000, guid: d03937fb9bdf1e544861e71a9f985704, type: 2}
+      quantity: 1
   craftingTime: 0
-  buildPosition: {x: 0, y: 0}
-  buildGameObject: {fileID: 0}
+  effectType: 1
+  buildPosition: {x: -2, y: -2.7}
+  buildGameObject: {fileID: 3968831438344713992, guid: 08e6de899d15aa842a75b2597db14025, type: 3}

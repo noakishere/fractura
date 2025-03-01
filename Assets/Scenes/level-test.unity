@@ -615,7 +615,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1631735035, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -642,7 +642,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: hey freak...
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!58 &284225524
 CircleCollider2D:
@@ -842,7 +841,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &329368418
 SpriteRenderer:
@@ -883,7 +881,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1066,7 +1064,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 93c5514bf9f242e4d80d3452507bfac9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5904,7 +5902,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -6216,7 +6214,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 93c5514bf9f242e4d80d3452507bfac9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11054,7 +11052,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -11217,7 +11215,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &673276442
 SpriteRenderer:
@@ -11258,7 +11255,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11743,7 +11740,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &732171699
 SpriteRenderer:
@@ -11784,7 +11780,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11916,7 +11912,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1681105755, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11943,7 +11939,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: hey freak...
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!58 &739305477
 CircleCollider2D:
@@ -12109,7 +12104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &746208697
 SpriteRenderer:
@@ -12150,7 +12144,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12588,7 +12582,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -12832,7 +12826,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1780455183, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12859,7 +12853,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: hey freak...
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!58 &1034067420
 CircleCollider2D:
@@ -13015,7 +13008,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 802164145, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13042,7 +13035,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: hey freak...
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!58 &1059769120
 CircleCollider2D:
@@ -13152,7 +13144,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -21575,6 +21567,7 @@ Transform:
   m_Children:
   - {fileID: 1508182320}
   - {fileID: 2147028365}
+  - {fileID: 1566580848}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1184602825
@@ -21706,7 +21699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &1184602830
 SpriteRenderer:
@@ -21747,7 +21739,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21924,7 +21916,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &1306080974
 SpriteRenderer:
@@ -21965,7 +21956,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22052,7 +22043,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2100997538, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22126,7 +22117,6 @@ MonoBehaviour:
   dialogue: 'hey freak... hey freak... hey freak... hey freak... hey freak... hey
     freak... hey freak... hey freak...<color=red> hey freak...</color> hey freak...
     hey freak... hey freak... '
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!58 &1314969516
 CircleCollider2D:
@@ -22354,7 +22344,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -379507940, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22381,7 +22371,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: hey freak...
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!58 &1402572445
 CircleCollider2D:
@@ -22870,6 +22859,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6635516342621717315, guid: 7435d5e369818d144b7c8acc38a89251, type: 3}
   m_PrefabInstance: {fileID: 1408214707}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1566580847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566580848}
+  m_Layer: 0
+  m_Name: point1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1566580848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566580847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: -2.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1184400331}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1577931937 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2720049090865895119, guid: 7435d5e369818d144b7c8acc38a89251, type: 3}
@@ -23015,7 +23035,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &1635873120
 SpriteRenderer:
@@ -23056,7 +23075,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23152,6 +23171,50 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &1669117996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1669117997}
+  - component: {fileID: 1669117998}
+  m_Layer: 0
+  m_Name: WorldEventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1669117997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669117996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1669117998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669117996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a7b53e62d384c4390c8dd7dc20aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1696686074
 GameObject:
   m_ObjectHideFlags: 0
@@ -23500,7 +23563,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteract: 0
   dialogue: here lies a sad skeleton that barely anyone knew
-  textMeshPro: {fileID: 1577931937}
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &1858847922
 SpriteRenderer:
@@ -23541,7 +23603,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 574623749
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883059328, guid: 9587612daac9af7489965451739aeed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -78000,6 +78062,7 @@ SceneRoots:
   - {fileID: 360808466}
   - {fileID: 1280276777}
   - {fileID: 2096560670}
+  - {fileID: 1669117997}
   - {fileID: 1150070001724713197}
   - {fileID: 119232701}
   - {fileID: 1391283669}

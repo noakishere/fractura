@@ -14,3 +14,9 @@ public enum CellTypes
     Fire,
     Terrain
 }
+
+public enum CraftingEffectType
+{
+    None,
+    ChickenMeal,
+}

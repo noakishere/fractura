@@ -29,12 +29,18 @@ namespace Fractura.CraftingSystem
         public OutcomeParameters outcomeParameters;
 
         public Action<CraftingObject> OnObjectExecuted;
+        public CraftingEffectType effectType = CraftingEffectType.None;
 
         public void ExecuteOutcome(GameObject user)
         {
             outcomeStrategy?.ExecuteOutcome(this, user, outcomeParameters);
 
             OnObjectExecuted?.Invoke(this);
+
+            if(effectType != CraftingEffectType.None)
+            {
+                WorldEventManager.Instance.BroadcastOutcome(this);
+            }
         }
     }
 }
