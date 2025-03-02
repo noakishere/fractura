@@ -58,7 +58,17 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
                 break;
         }
 
-        if(!villageObjectiveDone)
+
+        // alternative for designer friendly mechanism
+        //foreach (var outcome in dynamicOutcomes)
+        //{
+        //    if (outcome.effectType == executedObject.effectType)
+        //    {
+        //        outcome.OnOutcomeExecuted.Invoke();
+        //    }
+        //}
+
+        if (!villageObjectiveDone)
         {
             if(isChickenMade && isWoodfireMade)
             {
