@@ -1,6 +1,7 @@
 using Fractura.CraftingSystem;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -9,10 +10,23 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
 {
     public event Action<CraftingObject> OnDynamicOutcomeExecuted;
 
+    [Header("Objective Texts")]
+    [SerializeField] private TextMeshProUGUI woodFireText;
+    [SerializeField] private TextMeshProUGUI chickenText;
+    [SerializeField] private TextMeshProUGUI villageObjectiveText;
+
+
     [Header("Wood Fire stuff")]
     [SerializeField] private List<Vector3Int> woodFirePositions;
     [SerializeField] private Tilemap tileMap;
     [SerializeField] private TileBase woodFireSprite;
+
+    [Header("Village flags")]
+    [SerializeField] private bool isChickenMade = false;
+    [SerializeField] private bool isWoodfireMade = false;
+    [SerializeField] private bool villageObjectiveDone = false;
+
+
 
     public void BroadcastOutcome(CraftingObject executedObject)
     {
@@ -23,18 +37,35 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
         {
             case CraftingEffectType.ChickenMeal:
                 Debug.Log("got them chickens");
-                NPCManager.Instance.OnChickenServed();
-                CraftingUIManager.Instance.AddLog("Chicken Objective Completed.");
+                //NPCManager.Instance.OnChickenServed();
+                CraftingUIManager.Instance.AddLog("<color=green>Chicken</color> Objective Completed.");
+                chickenText.fontStyle = FontStyles.Strikethrough | FontStyles.Bold | FontStyles.Italic;
+                isChickenMade = true;
+                //chickenText.fontWeight = FontWeight.Bold;
                 break;
             case CraftingEffectType.WoodFire:
                 Debug.Log("Wood fire made");
                 SwapAreaTiles();
-                CraftingUIManager.Instance.AddLog("Wood Fire Objective Completed.");
+                CraftingUIManager.Instance.AddLog("<color=green>Wood Fire</color> Objective Completed.");
+                woodFireText.fontStyle = FontStyles.Strikethrough | FontStyles.Bold | FontStyles.Italic;
+                isWoodfireMade = true;
                 break;
             default:
                 // No dynamic effect.
                 break;
         }
+
+        if(!villageObjectiveDone)
+        {
+            if(isChickenMade && isWoodfireMade)
+            {
+                NPCManager.Instance.OnChickenServed();
+                CraftingUIManager.Instance.AddLog("<color=green>You fed the village.</color>");
+                villageObjectiveText.fontStyle = FontStyles.Strikethrough | FontStyles.Bold | FontStyles.Italic;
+                villageObjectiveDone = true;
+            }
+        }
+
     }
 
     private void SwapAreaTiles()
