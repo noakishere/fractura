@@ -31534,6 +31534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a7b53e62d384c4390c8dd7dc20aa8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamicOutcomes: []
   woodFireText: {fileID: 2706112}
   chickenText: {fileID: 233401035}
   villageObjectiveText: {fileID: 1850531783}

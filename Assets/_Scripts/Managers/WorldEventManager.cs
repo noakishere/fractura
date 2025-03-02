@@ -2,13 +2,15 @@ using Fractura.CraftingSystem;
 using System;
 using System.Collections.Generic;
 using TMPro;
-//using UnityEditor.EditorTools;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
 {
     public event Action<CraftingObject> OnDynamicOutcomeExecuted;
+
+    [SerializeField] private List<DynamicOutcome> dynamicOutcomes;
 
     [Header("Objective Texts")]
     [SerializeField] private TextMeshProUGUI woodFireText;
@@ -79,4 +81,16 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
             tileMap.SetTile(pos, woodFireSprite);
         }
     }
+}
+
+
+
+[Serializable]
+public class DynamicOutcome
+{
+    [Tooltip("The effect type that triggers this outcome")]
+    public CraftingEffectType effectType;
+
+    [Tooltip("The actions to perform when this outcome is executed.")]
+    public UnityEvent OnOutcomeExecuted;
 }
