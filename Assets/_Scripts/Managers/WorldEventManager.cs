@@ -2,7 +2,7 @@ using Fractura.CraftingSystem;
 using System;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.EditorTools;
+//using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -21,11 +21,12 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
     [SerializeField] private Tilemap tileMap;
     [SerializeField] private TileBase woodFireSprite;
 
-    [Header("Village flags")]
+    [Header("Village stuff")]
     [SerializeField] private bool isChickenMade = false;
     [SerializeField] private bool isWoodfireMade = false;
     [SerializeField] private bool villageObjectiveDone = false;
-
+    [SerializeField] private GameObject boneWeapon;
+    [SerializeField] private Vector2 boneWeaponPos;
 
 
     public void BroadcastOutcome(CraftingObject executedObject)
@@ -63,6 +64,9 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
                 CraftingUIManager.Instance.AddLog("<color=green>You fed the village.</color>");
                 villageObjectiveText.fontStyle = FontStyles.Strikethrough | FontStyles.Bold | FontStyles.Italic;
                 villageObjectiveDone = true;
+
+                CraftingUIManager.Instance.AddLog("The villagers have gifted you the bone weapon. Pick it up!");
+                Instantiate(boneWeapon, boneWeaponPos, Quaternion.identity);
             }
         }
 

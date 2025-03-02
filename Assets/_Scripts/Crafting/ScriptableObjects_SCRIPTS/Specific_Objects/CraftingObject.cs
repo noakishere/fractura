@@ -31,7 +31,7 @@ namespace Fractura.CraftingSystem
         public Action<CraftingObject> OnObjectExecuted;
         public CraftingEffectType effectType = CraftingEffectType.None;
 
-        public void ExecuteOutcome(GameObject user)
+        public virtual void ExecuteOutcome(GameObject user)
         {
             outcomeStrategy?.ExecuteOutcome(this, user, outcomeParameters);
 
