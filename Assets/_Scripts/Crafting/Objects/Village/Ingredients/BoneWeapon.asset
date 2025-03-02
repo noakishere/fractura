@@ -24,3 +24,4 @@ MonoBehaviour:
   requiredCollider: {fileID: 0}
   requiredCollisionTag: Rat
   collisionSearchRadius: 5
+  shouldDestroyOnExecution: 0

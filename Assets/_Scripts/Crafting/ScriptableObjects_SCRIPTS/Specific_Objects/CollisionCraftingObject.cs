@@ -18,16 +18,7 @@ public class CollisionCraftingObject : CraftingObject
     [Tooltip("Search radius to look for a valid target when using a tag (e.g. for finding nearby rats).")]
     [SerializeField] private float collisionSearchRadius = 5f;
 
-    //private void OnEnable()
-    //{
-    //    // Assign the strategy and configure its parameters.
-    //    outcomeStrategy = new CollisionItemStrategy();
-    //    outcomeParameters = new BuildOutcomeParameters()
-    //    {
-    //        buildPosition = Vector2.zero,
-    //        buildingPrefab = null
-    //    };
-    //}
+    [SerializeField] private bool shouldDestroyOnExecution;
 
     public override void ExecuteOutcome(GameObject user)
     {
@@ -75,7 +66,13 @@ public class CollisionCraftingObject : CraftingObject
 
                 if(validTarget != null)
                 {
+                    // TO REMOVE FOR THE BUILD
                     validTarget.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+                    if(validTarget.TryGetComponent(out IOutcomeReceiver outcomeReceiver))
+                    {
+                        outcomeReceiver.ReceiveOutcome(this);
+                    }
                 }
 
                 if (validTarget == null)
@@ -92,7 +89,9 @@ public class CollisionCraftingObject : CraftingObject
         // All conditions met; execute the outcome using the chosen valid collider (player or nearest rat).
         base.ExecuteOutcome(user);
 
-        
-        Inventory.Instance.RemoveItems(this, 1);
+        if(shouldDestroyOnExecution)
+        {
+            Inventory.Instance.RemoveItems(this, 1);
+        }
     }
 }
