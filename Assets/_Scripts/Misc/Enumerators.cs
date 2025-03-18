@@ -20,4 +20,6 @@ public enum CraftingEffectType
     None,
     ChickenMeal,
     WoodFire,
+    SkeletonRitual,
+    SpawnDemon
 }

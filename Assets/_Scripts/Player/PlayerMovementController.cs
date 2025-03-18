@@ -56,6 +56,11 @@ namespace Topdown.Movement
             currentInput = new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0);
             
         }
+
+        public void StopMovement()
+        {
+            movementSpeed = 0;
+        }
     }
 }
 

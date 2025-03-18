@@ -1,10 +1,16 @@
 using Fractura.CraftingSystem;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Topdown.Movement;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+
 
 public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
 {
@@ -30,6 +36,30 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
     [SerializeField] private GameObject boneWeapon;
     [SerializeField] private Vector2 boneWeaponPos;
 
+    [Header("Graveyard Stuff")]
+    [SerializeField] public int ratKillCount = 0;
+    private bool isGhostRitualReady = false;
+    [SerializeField] private TextMeshProUGUI miceObjectiveText;
+    [SerializeField] private TextMeshProUGUI skeletonObjectiveText;
+    [SerializeField] private List<GameObject> spirits;
+    [SerializeField] private Sprite skeleton;
+    [SerializeField] private CraftingObject skeletonRitualItem;
+
+    [Header("Final Animation Stuff")]
+    [SerializeField] private GameObject targetCamera;
+    [SerializeField] private List<Transform> targetSkeletonPositions;
+    [SerializeField] private GameObject demon;
+    [SerializeField] private Transform demonPos;
+    [SerializeField] private Volume postProcessVolume;
+    private Vignette vignette;
+    [SerializeField] private GameObject blackScreen;
+    [SerializeField] private TextMeshProUGUI endScreenText;
+    [SerializeField] private PlayerMovementController player;
+
+    private void Start()
+    {
+        postProcessVolume.profile.TryGet(out vignette);
+    }
 
     public void BroadcastOutcome(CraftingObject executedObject)
     {
@@ -46,6 +76,7 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
                 isChickenMade = true;
                 //chickenText.fontWeight = FontWeight.Bold;
                 break;
+            
             case CraftingEffectType.WoodFire:
                 Debug.Log("Wood fire made");
                 SwapAreaTiles();
@@ -53,6 +84,25 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
                 woodFireText.fontStyle = FontStyles.Strikethrough | FontStyles.Bold | FontStyles.Italic;
                 isWoodfireMade = true;
                 break;
+
+            case CraftingEffectType.SkeletonRitual:
+                foreach (GameObject spirit in spirits)
+                {
+                    spirit.GetComponent<SpriteRenderer>().sprite = skeleton;
+                    spirit.GetComponent<NPCDialogue>().ChangeDialogue("We're ready for our master");
+                }
+
+                CraftingUIManager.Instance.AddLog("<color=green>Skeletons</color> are spawned.");
+                skeletonObjectiveText.fontStyle = FontStyles.Strikethrough | FontStyles.Bold | FontStyles.Italic;
+
+                Inventory.Instance.AddItem(skeletonRitualItem);
+
+                break;
+
+            case CraftingEffectType.SpawnDemon:
+                StartCoroutine(FinalAnimation());
+                break;
+
             default:
                 // No dynamic effect.
                 break;
@@ -79,8 +129,11 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
 
                 CraftingUIManager.Instance.AddLog("The villagers have gifted you the bone weapon. Pick it up!");
                 Instantiate(boneWeapon, boneWeaponPos, Quaternion.identity);
+
             }
         }
+
+        
 
     }
 
@@ -90,6 +143,76 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
         {
             tileMap.SetTile(pos, woodFireSprite);
         }
+    }
+
+    public void IncreaseRatKillCount(int i)
+    {
+        if(ratKillCount >= 3)
+        {
+            return;
+        }
+
+        ratKillCount += i;
+
+        if (ratKillCount == 2)
+        {
+            CraftingUIManager.Instance.AddLog("<color=green>The ghosts are ready for the ritual.</color>");
+            miceObjectiveText.fontStyle = FontStyles.Strikethrough | FontStyles.Bold | FontStyles.Italic;
+            isWoodfireMade = true;
+            isGhostRitualReady = true;
+        }
+    }
+
+    // Final State Sequence
+    private IEnumerator FinalAnimation()
+    {
+        player.StopMovement();
+        yield return new WaitForSeconds(2f);
+
+        CameraControl.Instance.ChangeCamera(targetCamera);
+
+        yield return new WaitForSeconds(1f);
+
+        for(int i = 0; i < spirits.Count; i++)
+        {
+            spirits[i].transform.position = targetSkeletonPositions[i].position;
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        Instantiate(demon, demonPos.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(0.5f);
+
+        vignette.intensity.value = 0;
+        vignette.active = true;
+
+        while(vignette.intensity.value < 1f)
+        {
+            vignette.intensity.value += 0.3f;
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        Image blackScreenImg = blackScreen.GetComponent<Image>();
+        Color color = blackScreenImg.color;
+        blackScreen.gameObject.SetActive(true);
+
+        while(blackScreenImg.color.a < 1f)
+        {
+            color.a = Mathf.Clamp01(color.a + 0.3f);
+            blackScreenImg.color = color;
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        endScreenText.gameObject.SetActive(true);
+
+        yield return null;
     }
 }
 
