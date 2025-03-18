@@ -7,6 +7,7 @@ using UnityEngine;
 public class NPCDialogue : MonoBehaviour
 {
     [SerializeField] private bool canInteract;
+    [SerializeField] private bool isSpeech;
 
     [SerializeField] private string dialogue;
     //[SerializeField] private List<string> nextDialogues;
@@ -38,6 +39,11 @@ public class NPCDialogue : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 CraftingUIManager.Instance.WriteNPCText(dialogue);
+
+                if(isSpeech)
+                {
+                    AudioManager.Instance.PlayNPCVoice();
+                }
                 //textMeshPro.text = dialogue;
             }
         }
