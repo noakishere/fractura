@@ -17,6 +17,10 @@ namespace Fractura.CraftingSystem
         public event Action<CraftingObject, int> OnItemRemoved;
         #endregion
 
+        [SerializeField] private AudioClip pickUpSfx;
+        [SerializeField] private AudioClip removeSfx;
+
+
         private void Start()
         {
             foreach(CraftingObject co in items.Keys)
@@ -55,6 +59,7 @@ namespace Fractura.CraftingSystem
 
             if(items.Keys.Count != 6)
             {
+                AudioManager.Instance.PlayEventAudio(pickUpSfx);
                 if (items.ContainsKey(item))
                 {
                     if(items[item] < 6)
@@ -83,6 +88,7 @@ namespace Fractura.CraftingSystem
             {
                 if (items[item] < 6)  // Assuming 6 is the maximum stack size per item.
                 {
+                    AudioManager.Instance.PlayEventAudio(pickUpSfx);
                     items[item]++;
                     OnItemAdded?.Invoke(item, items[item]);
                     Debug.Log($"Updated {item.ObjectName} count to {items[item]} in inventory.");
@@ -101,6 +107,7 @@ namespace Fractura.CraftingSystem
                 // Item doesn't exist yet; check if there's space for a new unique item.
                 if (items.Keys.Count < 6)
                 {
+                    AudioManager.Instance.PlayEventAudio(pickUpSfx);
                     items[item] = 1;
                     OnItemAdded?.Invoke(item, 1);
                     Debug.Log($"Added {item.ObjectName} to inventory.");
@@ -122,6 +129,7 @@ namespace Fractura.CraftingSystem
 
             if (items.TryGetValue(item, out int currentQuantity))
             {
+                AudioManager.Instance.PlayEventAudio(removeSfx);
                 currentQuantity -= quantity;
                 if (currentQuantity <= 0)
                 {

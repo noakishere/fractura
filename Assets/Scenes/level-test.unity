@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &60652329
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &70198073
@@ -612,6 +612,18 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6916915626971760693, guid: 16f80e66922d5ae48a7cdadad8b2acbd, type: 3}
+      propertyPath: pickUp
+      value: 
+      objectReference: {fileID: 8300000, guid: ae37bde495540944ca589c5439d7125e, type: 3}
+    - target: {fileID: 6916915626971760693, guid: 16f80e66922d5ae48a7cdadad8b2acbd, type: 3}
+      propertyPath: pickUpSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: ae37bde495540944ca589c5439d7125e, type: 3}
+    - target: {fileID: 6916915626971760693, guid: 16f80e66922d5ae48a7cdadad8b2acbd, type: 3}
+      propertyPath: removeSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 5db09a5cdd08aac42923604538f62812, type: 3}
     - target: {fileID: 6916915626971760693, guid: 16f80e66922d5ae48a7cdadad8b2acbd, type: 3}
       propertyPath: items._serializedList.Array.size
       value: 1
@@ -5997,7 +6009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &200395370
@@ -11704,7 +11716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &414744654
@@ -12157,7 +12169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &573612976
@@ -12489,7 +12501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &644030443
@@ -17895,7 +17907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: i am a rat
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &692095864
@@ -19486,7 +19498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &893518634
@@ -32108,6 +32120,7 @@ GameObject:
   - component: {fileID: 1551530843}
   - component: {fileID: 1551530841}
   - component: {fileID: 1551530842}
+  - component: {fileID: 1551530844}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -32140,11 +32153,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 414cbfe62cf11494bb3058ad424eee0e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -32334,9 +32347,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7c3ad7167cf264b9f6191f07eb12c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainAudioSource: {fileID: 0}
-  soundEffect: {fileID: 0}
+  mainAudioSource: {fileID: 1551530841}
+  soundEffect: {fileID: 1551530844}
   npcSound: {fileID: 1551530842}
+  sinisterTrack: {fileID: 8300000, guid: 7edbb29c9ea791847ad13621f1282f6a, type: 3}
+--- !u!82 &1551530844
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551530839}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1566580847
 GameObject:
   m_ObjectHideFlags: 0
@@ -32753,6 +32863,8 @@ MonoBehaviour:
   - {fileID: 840522363}
   - {fileID: 1005713250}
   - {fileID: 1010199270}
+  ghostClip: {fileID: 8300000, guid: fcc51286063da2f42944a6481293b0c2, type: 3}
+  demonClip: {fileID: 8300000, guid: 2289491e1fd3ebc429b8396f7d5e9559, type: 3}
   demon: {fileID: 7523227710069307101, guid: 6e58c60d529c77e439c7d1d694273e2b, type: 3}
   demonPos: {fileID: 1243953054}
   postProcessVolume: {fileID: 1777847954}
@@ -33597,7 +33709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: i am a rat
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &1865090397
@@ -87912,7 +88024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isSpeech: 0
+  isSpeech: 1
   dialogue: bring me da bone bruh
   offset: {x: 0, y: 1, z: 0}
 --- !u!212 &2119618277

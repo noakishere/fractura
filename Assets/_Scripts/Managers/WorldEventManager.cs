@@ -48,6 +48,8 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
     [Header("Final Animation Stuff")]
     [SerializeField] private GameObject targetCamera;
     [SerializeField] private List<Transform> targetSkeletonPositions;
+    [SerializeField] private AudioClip ghostClip;
+    [SerializeField] private AudioClip demonClip;
     [SerializeField] private GameObject demon;
     [SerializeField] private Transform demonPos;
     [SerializeField] private Volume postProcessVolume;
@@ -55,6 +57,7 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private TextMeshProUGUI endScreenText;
     [SerializeField] private PlayerMovementController player;
+    
 
     private void Start()
     {
@@ -166,6 +169,7 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
     // Final State Sequence
     private IEnumerator FinalAnimation()
     {
+        AudioManager.Instance.PlaySinisterTrack();
         player.StopMovement();
         yield return new WaitForSeconds(2f);
 
@@ -176,6 +180,7 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
         for(int i = 0; i < spirits.Count; i++)
         {
             spirits[i].transform.position = targetSkeletonPositions[i].position;
+            AudioManager.Instance.PlayEventAudio(ghostClip);
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -183,6 +188,7 @@ public class WorldEventManager : SingletonMonoBehaviour<WorldEventManager>
         yield return new WaitForSeconds(1f);
 
         Instantiate(demon, demonPos.position, Quaternion.identity);
+        AudioManager.Instance.PlayEventAudio(demonClip);
 
         yield return new WaitForSeconds(0.5f);
 
