@@ -626,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 5db09a5cdd08aac42923604538f62812, type: 3}
     - target: {fileID: 6916915626971760693, guid: 16f80e66922d5ae48a7cdadad8b2acbd, type: 3}
       propertyPath: items._serializedList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6916915626971760693, guid: 16f80e66922d5ae48a7cdadad8b2acbd, type: 3}
       propertyPath: items._serializedList.Array.data[0].Key
@@ -32363,7 +32363,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.634
   m_Pitch: 1
   Loop: 0
   Mute: 0
